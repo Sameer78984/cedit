@@ -1,3 +1,3 @@
-kilo: kilo.c
-	$(CC) kilo.c -o kilo -Wall -Wextra -pedantic -std=c99
-	./kilo
+cedit: cedit.c
+	$(CC) cedit.c -o cedit -Wall -Wextra -pedantic -std=c99
+	./cedit
