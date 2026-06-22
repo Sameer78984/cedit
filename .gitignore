@@ -1,0 +1,11 @@
+# Build output
+build/
+
+# Executables (if ever outside build/)
+*.out
+*.o
+
+# IDE / OS noise
+.vscode/
+.idea/
+.DS_Store
