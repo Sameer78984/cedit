@@ -1,7 +1,7 @@
 CC := gcc
 
-CFLAGS := -Wall -Wextra -pedantic -std=c99 -O2
-DEBUG_FLAGS := -O0 -g -DDEBUG
+CFLAGS := -Wall -Wextra -pedantic -std=c99 -O2 -Iinclude
+DEBUG_FLAGS := -O0 -g -DDEBUG -Iinclude
 
 # -------------------------
 # Directories
@@ -50,40 +50,35 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | dirs
 
 -include $(DEPS)
 
-# =========================
-# 🚀 RUN SYSTEM (UPDATED)
-# =========================
-
-# Run normally (no args)
+# -------------------------
+# RUN SYSTEM
+# -------------------------
 run: release
 	@./$(BIN)
 
-# Run with file argument (IMPORTANT for editor)
-# usage: make run ARGS="file.txt"
 run-file: release
 	@./$(BIN) $(ARGS)
 
-# Dev mode (clean screen + run)
 dev: release
 	@clear
 	@./$(BIN)
 
-# =========================
+# -------------------------
 # DEBUG BUILD
-# =========================
+# -------------------------
 debug: clean
-	$(MAKE) CFLAGS="$(CFLAGS) $(DEBUG_FLAGS)" release
+	$(MAKE) CFLAGS="$(DEBUG_FLAGS)" release
 
-# =========================
-# ASM / REPORTS
-# =========================
+# -------------------------
+# ASM REPORTS
+# -------------------------
 asm: release
 	objdump -d $(BIN) > $(REPORT_DIR)/cedit_disassembly.asm
 	objdump -S $(BIN) > $(REPORT_DIR)/cedit_source_mix.asm
 
-# =========================
+# -------------------------
 # CLEAN
-# =========================
+# -------------------------
 clean:
 	rm -rf $(BUILD_DIR)
 
